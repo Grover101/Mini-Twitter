@@ -1,4 +1,4 @@
-package com.grover101.minitwitter;
+package com.grover101.minitwitter.retrofit.request;
 
 //import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;

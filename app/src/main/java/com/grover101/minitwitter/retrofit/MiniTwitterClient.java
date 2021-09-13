@@ -18,8 +18,13 @@ public class MiniTwitterClient {
         miniTwitterService = retrofit.create(MiniTwitterService.class);
     }
 
+    // Patron Singleton
     public static MiniTwitterClient getInstance() {
-        return instance == null ? instance = new MiniTwitterClient() : instance;
+        //return instance == null ? instance = new MiniTwitterClient() : instance;
+        if (instance == null) {
+            instance = new MiniTwitterClient();
+        }
+        return instance;
     }
 
     public MiniTwitterService getMiniTwitterService() {
