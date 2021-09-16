@@ -1,15 +1,18 @@
 package com.grover101.minitwitter.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.TweetListFragment;
 import com.grover101.minitwitter.databinding.ActivityDashboardBinding;
@@ -17,6 +20,7 @@ import com.grover101.minitwitter.databinding.ActivityDashboardBinding;
 public class DashboardActivity extends AppCompatActivity {
 
     private ActivityDashboardBinding binding;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        fab = findViewById(R.id.fab);
 
         getSupportActionBar().hide();
 
@@ -42,6 +48,13 @@ public class DashboardActivity extends AppCompatActivity {
                 .add(R.id.fragmentContainer, new TweetListFragment())
                 .commit();
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NuevoTweetDialogFragment dialogFragment = new NuevoTweetDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(), "NuevoTweetDialogFragment");
+            }
+        });
     }
 
 }

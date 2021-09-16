@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_nuevo_tweet_button.xml" value="0.38177083333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.38177083333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_gris_24.xml" value="0.38177083333333334" />
+        <entry key="app/src/main/res/drawable/ic_close_blue_24.xml" value="0.38177083333333334" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/ic_like.xml" value="0.38177083333333334" />
         <entry key="app/src/main/res/drawable/ic_like_pink.xml" value="0.38177083333333334" />
@@ -18,6 +20,7 @@
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/fragment_tweet.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_tweet_list.xml" value="0.365625" />
+        <entry key="app/src/main/res/layout/nuevo_tweet_full_dialog.xml" value="0.75" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.365625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2203125" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
