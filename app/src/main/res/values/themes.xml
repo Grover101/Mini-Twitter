@@ -26,11 +26,12 @@
 
     <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/azul</item>
-        <item name="colorPrimaryVariant">#000</item>
+        <item name="colorPrimaryVariant">#ddd</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>
