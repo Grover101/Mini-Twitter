@@ -2,7 +2,9 @@ package com.grover101.minitwitter.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +17,15 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.TweetListFragment;
+import com.grover101.minitwitter.common.Constantes;
+import com.grover101.minitwitter.common.SharedPreferencesManager;
 import com.grover101.minitwitter.databinding.ActivityDashboardBinding;
 
 public class DashboardActivity extends AppCompatActivity {
 
     private ActivityDashboardBinding binding;
     FloatingActionButton fab;
+    ImageView ivAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fab = findViewById(R.id.fab);
+        ivAvatar = findViewById(R.id.imageViewToolbarPhoto);
 
         getSupportActionBar().hide();
 
@@ -55,6 +61,13 @@ public class DashboardActivity extends AppCompatActivity {
                 dialogFragment.show(getSupportFragmentManager(), "NuevoTweetDialogFragment");
             }
         });
+
+        // Seteamos la imagen del usuario del perfil
+        String photoUrl = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_PHOTOURL);
+        if (photoUrl.isEmpty())
+            Glide.with(this)
+                    .load(Constantes.API_MINITWITTER_FILES_URL + photoUrl)
+                    .into(ivAvatar);
     }
 
 }

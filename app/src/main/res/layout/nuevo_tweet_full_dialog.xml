@@ -39,7 +39,7 @@
         app:srcCompat="@drawable/ic_baseline_account_circle_gris_24" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/editTextMensaje"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
