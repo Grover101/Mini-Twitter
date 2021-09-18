@@ -30,6 +30,13 @@ public class Tweet {
     public Tweet() {
     }
 
+    public Tweet(Tweet nuevoTweet) {
+        this.id = nuevoTweet.getId();
+        this.mensaje = nuevoTweet.getMensaje();
+        this.likes = nuevoTweet.getLikes();
+        this.user = nuevoTweet.getUser();
+    }
+
     /**
      * 
      * @param id

@@ -1,11 +1,11 @@
 
 package com.grover101.minitwitter.retrofit.request;
 
-import javax.annotation.Generated;
+//import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
+//@Generated("jsonschema2pojo")
 public class RequestCreateTweet {
 
     @SerializedName("mensaje")
