@@ -51,7 +51,11 @@ public class MyTweetRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetRecy
             String photo = holder.mItem.getUser().getPhotoUrl();
             if (!photo.equals(""))
                 Glide.with(ctx)
-                        .load("https://www.minitwitter.com/apiv1/uploads/photos/" + photo)
+                        .load(Constantes.API_MINITWITTER_FILES_URL + photo)
+                        .into(holder.ivAvatar);
+            else
+                Glide.with(ctx)
+                        .load(R.drawable.ic_baseline_account_circle_24)
                         .into(holder.ivAvatar);
 
             for (Like like : holder.mItem.getLikes())
