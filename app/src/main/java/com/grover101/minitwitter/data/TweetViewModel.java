@@ -22,6 +22,8 @@ public class TweetViewModel extends AndroidViewModel {
 
     public LiveData<List<Tweet>> getTweets() { return tweets; }
 
+    public LiveData<List<Tweet>> getNewTweets() { return tweetRepository.getAllTweets(); }
+
     public void insertTweet(String mensaje) {
         tweetRepository.createTweet(mensaje);
     }
