@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_prueba.xml" value="0.32155797101449274" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.3496376811594203" />
+        <entry key="app/src/main/res/layout/buttom_modal_tweet_fragment.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.365625" />
@@ -22,6 +23,7 @@
         <entry key="app/src/main/res/layout/fragment_tweet_list.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/nuevo_tweet_full_dialog.xml" value="0.75" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.365625" />
+        <entry key="app/src/main/res/menu/navigation_view_dialog_tweet.xml" value="0.365625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2203125" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
       </map>

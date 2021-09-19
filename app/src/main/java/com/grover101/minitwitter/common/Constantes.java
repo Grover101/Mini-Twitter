@@ -16,4 +16,5 @@ public class Constantes {
     public static final String TWEET_LIST_TYPE = "TWEET_LIST_TYPE";
     public static final int TWEET_LIST_ALL = 1;
     public static final int TWEET_LIST_FAVS = 2;
+    public static final String ARG_TWEET_ID = "TWEET_ID";
 }

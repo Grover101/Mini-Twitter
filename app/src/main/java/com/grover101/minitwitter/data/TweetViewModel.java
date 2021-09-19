@@ -1,12 +1,15 @@
 package com.grover101.minitwitter.data;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.grover101.minitwitter.retrofit.response.Tweet;
+import com.grover101.minitwitter.ui.BottomModalTweetFragment;
 
 import java.util.List;
 
@@ -22,6 +25,11 @@ public class TweetViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Tweet>> getTweets() { return tweets; }
+
+    public void openDialogTweetMenu(Context ctx, int idTweet) {
+        BottomModalTweetFragment dialogTweet = BottomModalTweetFragment.newInstance(idTweet);
+        dialogTweet.show(((AppCompatActivity)ctx).getSupportFragmentManager(), "BottomModalFragment");
+    }
 
     public LiveData<List<Tweet>> getFavTweets() { return tweetRepository.getFavTweets(); }
 
