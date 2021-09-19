@@ -1,10 +1,13 @@
 package com.grover101.minitwitter;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.common.SharedPreferencesManager;
+import com.grover101.minitwitter.data.TweetViewModel;
 import com.grover101.minitwitter.databinding.FragmentTweetBinding;
 import com.grover101.minitwitter.retrofit.response.Like;
 import com.grover101.minitwitter.retrofit.response.Tweet;
@@ -25,11 +29,13 @@ public class MyTweetRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetRecy
     private List<Tweet> mValues;
     private Context ctx;
     String username;
+    TweetViewModel tweetViewModel;
 
     public MyTweetRecyclerViewAdapter(Context context, List<Tweet> items) {
         ctx = context;
         mValues = items;
         username = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_USER);
+        tweetViewModel = new ViewModelProvider((FragmentActivity) ctx).get(TweetViewModel.class);
     }
 
     @Override
@@ -63,6 +69,13 @@ public class MyTweetRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetRecy
                     .into(holder.ivLike);
             holder.tvLikesCount.setTextColor(ctx.getResources().getColor(android.R.color.black));
             holder.tvLikesCount.setTypeface(null, Typeface.NORMAL);
+
+            holder.ivLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tweetViewModel.likeTweet(holder.mItem.getId());
+                }
+            });
 
             for (Like like : holder.mItem.getLikes())
                 if (like.getUsername().equals(username)) {
