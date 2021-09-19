@@ -24,5 +24,5 @@ public interface AuthTwitterService {
     Call<Tweet> likeTweet(@Path("idTweet") int idTweet);
 
     @DELETE("tweets/{idTweet}")
-    Call<TweetDeleted> deleteTweet(@Path("idTweet") int idTweet)
+    Call<TweetDeleted> deleteTweet(@Path("idTweet") int idTweet);
 }

@@ -13,6 +13,7 @@ import com.grover101.minitwitter.retrofit.AuthTwitterService;
 import com.grover101.minitwitter.retrofit.request.RequestCreateTweet;
 import com.grover101.minitwitter.retrofit.response.Like;
 import com.grover101.minitwitter.retrofit.response.Tweet;
+import com.grover101.minitwitter.retrofit.response.TweetDeleted;
 import com.grover101.minitwitter.ui.MainActivity;
 
 import java.util.ArrayList;
@@ -110,6 +111,32 @@ public class TweetRepository {
             }
         });
 
+    }
+
+    public void deleteTweet(final int idTweet) {
+        Call<TweetDeleted> call = authTwitterService.deleteTweet(idTweet);
+
+        call.enqueue(new Callback<TweetDeleted>() {
+            @Override
+            public void onResponse(Call<TweetDeleted> call, Response<TweetDeleted> response) {
+                if (response.isSuccessful()) {
+                    List<Tweet> clonedTweets = new ArrayList<>();
+
+                    for (int i = 0; i < allTweets.getValue().size(); i++)
+                        if (allTweets.getValue().get(i).getId() != idTweet)
+                            clonedTweets.add(new Tweet(allTweets.getValue().get(i)));
+
+                    allTweets.setValue(clonedTweets);
+                    getFavTweets();
+                } else
+                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos de acceso", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<TweetDeleted> call, Throwable t) {
+                Toast.makeText(MyApp.getContext(), "Error en la conexion. Intentelo de nuevo", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void LikeTweet(int idTweet) {

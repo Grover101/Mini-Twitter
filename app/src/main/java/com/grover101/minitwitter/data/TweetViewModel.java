@@ -32,11 +32,9 @@ public class TweetViewModel extends AndroidViewModel {
         return getFavTweets();
     }
 
-    public void insertTweet(String mensaje) {
-        tweetRepository.createTweet(mensaje);
-    }
+    public void insertTweet(String mensaje) { tweetRepository.createTweet(mensaje); }
 
-    public void likeTweet(int idTweet) {
-        tweetRepository.LikeTweet(idTweet);
-    }
+    public void deleteTweet(int idTweet) { tweetRepository.deleteTweet(idTweet); }
+
+    public void likeTweet(int idTweet) { tweetRepository.LikeTweet(idTweet); }
 }
