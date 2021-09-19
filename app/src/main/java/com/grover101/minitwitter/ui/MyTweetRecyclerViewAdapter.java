@@ -70,6 +70,15 @@ public class MyTweetRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetRecy
             holder.tvLikesCount.setTextColor(ctx.getResources().getColor(android.R.color.black));
             holder.tvLikesCount.setTypeface(null, Typeface.NORMAL);
 
+            holder.ivShowMenu.setVisibility(View.GONE);
+            if (holder.mItem.getUser().getUsername().equals(username))
+                holder.ivShowMenu.setVisibility(View.VISIBLE);
+
+            holder.ivShowMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) { tweetViewModel.openDialogTweetMenu(ctx, holder.mItem.getId()); }
+            });
+
             holder.ivLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -100,6 +109,7 @@ public class MyTweetRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetRecy
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final ImageView ivAvatar;
         public final ImageView ivLike;
+        public final ImageView ivShowMenu;
         public final TextView tvUsernamer;
         public final TextView tvMessage;
         public final TextView tvLikesCount;
@@ -109,6 +119,7 @@ public class MyTweetRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetRecy
             super(binding.getRoot());
             ivAvatar = binding.imageViewAvatar;
             ivLike = binding.imageViewLike;
+            ivShowMenu = binding.imageViewShowMenu;
             tvUsernamer = binding.textViewUsername;
             tvMessage = binding.textViewMessage;
             tvLikesCount = binding.textViewLikes;
