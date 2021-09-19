@@ -1,4 +1,4 @@
-package com.grover101.minitwitter;
+package com.grover101.minitwitter.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,18 +14,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.data.TweetViewModel;
-import com.grover101.minitwitter.retrofit.AuthTwitterClient;
-import com.grover101.minitwitter.retrofit.AuthTwitterService;
 import com.grover101.minitwitter.retrofit.response.Tweet;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A fragment representing a list of Items.

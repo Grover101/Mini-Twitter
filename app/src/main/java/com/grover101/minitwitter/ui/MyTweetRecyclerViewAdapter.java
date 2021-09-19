@@ -1,4 +1,4 @@
-package com.grover101.minitwitter;
+package com.grover101.minitwitter.ui;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.common.SharedPreferencesManager;
 import com.grover101.minitwitter.data.TweetViewModel;
@@ -20,7 +21,6 @@ import com.grover101.minitwitter.databinding.FragmentTweetBinding;
 import com.grover101.minitwitter.retrofit.response.Like;
 import com.grover101.minitwitter.retrofit.response.Tweet;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 

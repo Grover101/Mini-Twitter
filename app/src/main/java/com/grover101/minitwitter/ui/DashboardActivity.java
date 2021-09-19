@@ -8,15 +8,10 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grover101.minitwitter.R;
-import com.grover101.minitwitter.TweetListFragment;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.common.SharedPreferencesManager;
 import com.grover101.minitwitter.databinding.ActivityDashboardBinding;
