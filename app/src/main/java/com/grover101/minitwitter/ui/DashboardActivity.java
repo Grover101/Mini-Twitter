@@ -11,13 +11,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.common.SharedPreferencesManager;
 import com.grover101.minitwitter.databinding.ActivityDashboardBinding;
+import com.grover101.minitwitter.ui.profile.ProfileFragment;
+import com.grover101.minitwitter.ui.tweets.NuevoTweetDialogFragment;
+import com.grover101.minitwitter.ui.tweets.TweetListFragment;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -41,6 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
                     fab.hide();
                     break;
                 case R.id.navigation_profile:
+                    f = new ProfileFragment();
                     fab.hide();
                     break;
             }

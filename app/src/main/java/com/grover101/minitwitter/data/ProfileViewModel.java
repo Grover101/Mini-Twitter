@@ -1,4 +1,4 @@
-package com.grover101.minitwitter.ui.profile;
+package com.grover101.minitwitter.data;
 
 import androidx.lifecycle.ViewModel;
 

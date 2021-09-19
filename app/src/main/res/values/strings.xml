@@ -23,4 +23,7 @@
     <string name="toolbar_title_home">Inicio</string>
     <string name="text_twittear">Twittear</string>
     <string name="hint_mensaje_nuevo_tweet">Que esta pasando?</string>
+    <string name="hint_password_current">Contraseña actual</string>
+    <string name="btn_save_profile">Guardar</string>
+    <string name="btn_chanse_password">Cambiar Contraseña</string>
 </resources>
