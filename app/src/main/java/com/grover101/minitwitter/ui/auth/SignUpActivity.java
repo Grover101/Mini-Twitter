@@ -1,4 +1,4 @@
-package com.grover101.minitwitter.ui;
+package com.grover101.minitwitter.ui.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,7 @@ import com.grover101.minitwitter.retrofit.MiniTwitterClient;
 import com.grover101.minitwitter.retrofit.MiniTwitterService;
 import com.grover101.minitwitter.retrofit.request.RequestSignup;
 import com.grover101.minitwitter.retrofit.response.ResponseAuth;
+import com.grover101.minitwitter.ui.DashboardActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -2,7 +2,6 @@ package com.grover101.minitwitter.data;
 
 import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.grover101.minitwitter.common.Constantes;
@@ -14,7 +13,6 @@ import com.grover101.minitwitter.retrofit.request.RequestCreateTweet;
 import com.grover101.minitwitter.retrofit.response.Like;
 import com.grover101.minitwitter.retrofit.response.Tweet;
 import com.grover101.minitwitter.retrofit.response.TweetDeleted;
-import com.grover101.minitwitter.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Iterator;

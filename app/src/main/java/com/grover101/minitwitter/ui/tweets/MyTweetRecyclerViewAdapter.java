@@ -1,4 +1,4 @@
-package com.grover101.minitwitter.ui;
+package com.grover101.minitwitter.ui.tweets;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;

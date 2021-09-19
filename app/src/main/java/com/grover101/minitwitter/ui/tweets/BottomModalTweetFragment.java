@@ -1,4 +1,4 @@
-package com.grover101.minitwitter.ui;
+package com.grover101.minitwitter.ui.tweets;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -6,9 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-import android.os.ConditionVariable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;

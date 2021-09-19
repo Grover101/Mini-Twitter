@@ -1,4 +1,4 @@
-package com.grover101.minitwitter.ui;
+package com.grover101.minitwitter.ui.tweets;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
