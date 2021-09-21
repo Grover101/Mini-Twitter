@@ -10,6 +10,7 @@ import com.grover101.minitwitter.common.SharedPreferencesManager;
 import com.grover101.minitwitter.retrofit.AuthTwitterClient;
 import com.grover101.minitwitter.retrofit.AuthTwitterService;
 import com.grover101.minitwitter.retrofit.request.RequestCreateTweet;
+import com.grover101.minitwitter.retrofit.request.RequestUserProfile;
 import com.grover101.minitwitter.retrofit.response.Like;
 import com.grover101.minitwitter.retrofit.response.ResponseUserProfile;
 import com.grover101.minitwitter.retrofit.response.Tweet;
@@ -51,8 +52,28 @@ public class ProfileRepository {
             @Override
             public void onFailure(Call<ResponseUserProfile> call, Throwable t) {
                 Toast.makeText(MyApp.getContext(), "Error en la conexion. Intentelo de nuevo", Toast.LENGTH_SHORT).show();
+
             }
         });
         return userProfile;
+    }
+
+    public void updateProfile(RequestUserProfile requestUserProfile) {
+        Call<ResponseUserProfile> call = authTwitterService.updateProfile(requestUserProfile);
+
+        call.enqueue(new Callback<ResponseUserProfile>() {
+            @Override
+            public void onResponse(Call<ResponseUserProfile> call, Response<ResponseUserProfile> response) {
+                if (response.isSuccessful())
+                    userProfile.setValue(response.body());
+                else
+                    Toast.makeText(MyApp.getContext(), "Algo fue mal", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseUserProfile> call, Throwable t) {
+                Toast.makeText(MyApp.getContext(), "Error en la conexion. Intentelo de nuevo", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

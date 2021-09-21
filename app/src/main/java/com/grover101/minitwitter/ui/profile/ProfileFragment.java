@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.data.ProfileViewModel;
+import com.grover101.minitwitter.retrofit.request.RequestUserProfile;
 import com.grover101.minitwitter.retrofit.response.ResponseUserProfile;
 
 public class ProfileFragment extends Fragment {
@@ -29,6 +30,7 @@ public class ProfileFragment extends Fragment {
     ImageView ivAvatar;
     EditText etUsername, etEmail, etPassword, etWebsite, etDescripcion;
     Button btnSave, btnChangePassword;
+    boolean loadingData = true;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -56,7 +58,25 @@ public class ProfileFragment extends Fragment {
 
         // Eventos
         btnSave.setOnClickListener(view -> {
-            Toast.makeText(getActivity(), "Click on Save", Toast.LENGTH_SHORT).show();
+            String username = etUsername.getText().toString();
+            String email = etEmail.getText().toString();
+            String descripcion = etDescripcion.getText().toString();
+            String website = etWebsite.getText().toString();
+            String password = etPassword.getText().toString();
+
+            if (username.isEmpty())
+                etUsername.setError("El nombre de usuario es requrido");
+            else if (email.isEmpty())
+                etEmail.setError("El email es requerido");
+            else if (password.isEmpty())
+                etPassword.setError("La contraseña es requerida");
+            else {
+                RequestUserProfile requestUserProfile = new RequestUserProfile(username, email, descripcion, website, password);
+                profileViewModel.updateProfile(requestUserProfile);
+                Toast.makeText(getActivity(), "Enviando informacion al servidor", Toast.LENGTH_SHORT).show();
+
+                btnSave.setEnabled(false);
+            }
         });
 
         btnChangePassword.setOnClickListener(view -> {
@@ -67,10 +87,16 @@ public class ProfileFragment extends Fragment {
         profileViewModel.userPerfil.observe(getActivity(), new Observer<ResponseUserProfile>() {
             @Override
             public void onChanged(ResponseUserProfile responseUserProfile) {
+                loadingData = false;
                 etUsername.setText(responseUserProfile.getUsername());
                 etEmail.setText(responseUserProfile.getEmail());
                 etWebsite.setText(responseUserProfile.getWebsite());
                 etDescripcion.setText(responseUserProfile.getDescripcion());
+                if (!loadingData) {
+                    btnSave.setEnabled(true);
+                    Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
+                }
+
                 if (!responseUserProfile.getPhotoUrl().isEmpty()) {
                     Glide.with(getActivity())
                             .load(Constantes.API_MINITWITTER_FILES_URL + responseUserProfile.getPhotoUrl())
