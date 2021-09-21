@@ -84,6 +84,11 @@ public class ProfileFragment extends Fragment {
             Toast.makeText(getActivity(), "Click on Change Password", Toast.LENGTH_SHORT).show();
         });
 
+        ivAvatar.setOnClickListener( view -> {
+            // Invocar a la seccion de imagenes
+
+        });
+
         // ViewModel
         profileViewModel.userPerfil.observe(getActivity(), new Observer<ResponseUserProfile>() {
             @Override
