@@ -26,4 +26,6 @@
     <string name="hint_password_current">Contraseña actual</string>
     <string name="btn_save_profile">Guardar</string>
     <string name="btn_chanse_password">Cambiar Contraseña</string>
+    <string name="hint_web_site">Website</string>
+    <string name="hind_description">Descripcion e intereses</string>
 </resources>

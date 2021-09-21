@@ -1,4 +1,3 @@
-
 package com.grover101.minitwitter.retrofit.request;
 
 //import javax.annotation.Generated;
@@ -26,27 +25,19 @@ public class RequestUserProfile {
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public RequestUserProfile() {
     }
 
     /**
-     * 
+     *
      * @param descripcion
      * @param website
      * @param password
      * @param email
      * @param username
      */
-    public RequestUserProfile(String username, String email, String descripcion, String website) {
-        super();
-        this.username = username;
-        this.email = email;
-        this.descripcion = descripcion;
-        this.website = website;
-    }
-
     public RequestUserProfile(String username, String email, String descripcion, String website, String password) {
         super();
         this.username = username;
