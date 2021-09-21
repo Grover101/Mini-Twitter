@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.data.ProfileViewModel;
@@ -92,20 +93,25 @@ public class ProfileFragment extends Fragment {
                 etEmail.setText(responseUserProfile.getEmail());
                 etWebsite.setText(responseUserProfile.getWebsite());
                 etDescripcion.setText(responseUserProfile.getDescripcion());
-                if (!loadingData) {
-                    btnSave.setEnabled(true);
-                    Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
-                }
 
                 if (!responseUserProfile.getPhotoUrl().isEmpty()) {
                     Glide.with(getActivity())
                             .load(Constantes.API_MINITWITTER_FILES_URL + responseUserProfile.getPhotoUrl())
+                            .dontAnimate()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .centerCrop()
+                            .skipMemoryCache(true)
                             .into(ivAvatar);
                 }
                 else {
                     Glide.with(getActivity())
                             .load(R.drawable.ic_baseline_account_circle_24)
                             .into(ivAvatar);
+                }
+
+                if (!loadingData) {
+                    btnSave.setEnabled(true);
+                    Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

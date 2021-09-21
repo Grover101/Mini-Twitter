@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -98,9 +99,12 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Seteamos la imagen del usuario del perfil
         String photoUrl = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_PHOTOURL);
-        if (photoUrl.isEmpty())
+        if (!photoUrl.isEmpty())
             Glide.with(this)
                     .load(Constantes.API_MINITWITTER_FILES_URL + photoUrl)
+                    .dontAnimate()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .centerCrop()
                     .into(ivAvatar);
         else
             Glide.with(this)
