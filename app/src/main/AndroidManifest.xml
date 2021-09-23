@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.MiniTwitter">
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3134331916013359~8934157135"/>
+
         <activity
             android:name=".ui.DashboardActivity"
             android:exported="true"
