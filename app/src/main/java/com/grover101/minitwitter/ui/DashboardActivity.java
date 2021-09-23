@@ -1,6 +1,10 @@
 package com.grover101.minitwitter.ui;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,13 +15,17 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.grover101.minitwitter.R;
 import com.grover101.minitwitter.common.Constantes;
 import com.grover101.minitwitter.common.SharedPreferencesManager;
+import com.grover101.minitwitter.data.ProfileViewModel;
 import com.grover101.minitwitter.databinding.ActivityDashboardBinding;
 import com.grover101.minitwitter.ui.profile.ProfileFragment;
 import com.grover101.minitwitter.ui.tweets.NuevoTweetDialogFragment;
@@ -33,6 +41,7 @@ public class DashboardActivity extends AppCompatActivity implements PermissionLi
     private ActivityDashboardBinding binding;
     FloatingActionButton fab;
     ImageView ivAvatar;
+    ProfileViewModel profileViewModel;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,6 +82,8 @@ public class DashboardActivity extends AppCompatActivity implements PermissionLi
 
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
         fab = findViewById(R.id.fab);
         ivAvatar = findViewById(R.id.imageViewToolbarPhoto);
@@ -116,11 +127,47 @@ public class DashboardActivity extends AppCompatActivity implements PermissionLi
             Glide.with(this)
             .load(R.drawable.ic_baseline_account_circle_24)
             .into(ivAvatar);
+
+        profileViewModel.photoProfile.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String photo) {
+                Glide.with(DashboardActivity.this)
+                        .load(Constantes.API_MINITWITTER_FILES_URL + photo)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .centerCrop()
+                        .skipMemoryCache(true)
+                        .into(ivAvatar);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_CANCELED) {
+            if (requestCode == Constantes.SELECT_PHOTO_GALLERY) {
+                if (data != null) {
+                    Uri imagenSeleccionada = data.getData(); // content://gallery/photos/..
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getContentResolver().query(imagenSeleccionada, filePathColumn, null, null, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        // "filename" = filePathColumn[0]
+                        int imagenIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        String fotoPath = cursor.getString(imagenIndex);
+                        profileViewModel.uploadPhoto(fotoPath);
+                        cursor.close();
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
         // Invocamos la seleccion de foto de la galeria
+        Intent seleccionarFoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(seleccionarFoto, Constantes.SELECT_PHOTO_GALLERY);
     }
 
     @Override

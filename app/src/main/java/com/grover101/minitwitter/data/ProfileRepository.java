@@ -42,6 +42,10 @@ public class ProfileRepository {
             photoProfile = new MutableLiveData<>();
     }
 
+    public MutableLiveData<String> getPhotoProfile() {
+        return photoProfile;
+    }
+
     public MutableLiveData<ResponseUserProfile> getProfile() {
         if (userProfile == null)
             userProfile = new MutableLiveData<>();
@@ -99,7 +103,7 @@ public class ProfileRepository {
                     photoProfile.setValue(response.body().getFilename());
                 }
                 else
-                    Toast.makeText(MyApp.getContext(), "Algo fue mal", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApp.getContext(), "Algo fue mal " + response.message(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
